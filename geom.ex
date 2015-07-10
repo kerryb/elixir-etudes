@@ -18,9 +18,12 @@ defmodule Geom do
       iex> Geom.area {:ellipse, 2, 4}
       25.132741228718345
   """
-  def area({shape, dimension_1, dimension_2}), do: area(shape, dimension_1, dimension_2)
-  defp area(:rectangle, length, width) when length > 0 and width > 0, do: length * width
-  defp area(:triangle, base, height) when base > 0 and height > 0, do: 0.5 * base * height
-  defp area(:ellipse, length, width) when length > 0 and width > 0, do: :math.pi * length * width
-  defp area(_, _, _), do: 0
+  def area({shape, dimension_1, dimension_2}) when dimension_1 > 0 and dimension_2 > 0 do
+    case shape do
+      :rectangle -> dimension_1 * dimension_2
+      :triangle -> 0.5 * dimension_1 * dimension_2
+      :ellipse -> :math.pi * dimension_1 * dimension_2
+      true -> 0
+    end
+  end
 end

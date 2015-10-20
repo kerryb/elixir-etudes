@@ -1,3 +1,7 @@
 defmodule Dates do
-  def parts(date_string), do: String.split(date_string, "-") |> Enum.map(&Integer.parse/1) |> Enum.map(fn({x, _}) -> x end)
+  def parts date_string do
+    date_string
+    |> String.split("-")
+    |> Enum.map(&String.to_integer/1)
+  end
 end
